@@ -1,31 +1,31 @@
 import torch
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = model.to(device)  # Move model to GPU if available
+model = model.to(device)  
 
-num_epochs = 10  # Adjust as needed
+num_epochs = 10  
 
 for epoch in range(num_epochs):
-    model.train()  # Set model to training mode
+    model.train()  
 
     running_loss = 0.0
     for images, labels in train_loader:
         images, labels = images.to(device), labels.to(device)
         
-        optimizer.zero_grad()  # Zero gradients
+        optimizer.zero_grad()  
 
-        outputs = model(images)  # Forward pass
-        loss = criterion(outputs, labels)  # Calculate loss
+        outputs = model(images) 
+        loss = criterion(outputs, labels)  
 
-        loss.backward()  # Backward pass
-        optimizer.step()  # Update weights
+        loss.backward()  
+        optimizer.step()  
 
         running_loss += loss.item()
 
     print(f'Epoch {epoch+1}, Loss: {running_loss/len(train_loader)}')
 
-    # Validation loop
-    model.eval()  # Set model to evaluation mode
+   
+    model.eval()  
     correct = 0
     total = 0
     with torch.no_grad():
